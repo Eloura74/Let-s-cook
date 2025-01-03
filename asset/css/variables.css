@@ -1,4 +1,8 @@
 :root {
   --theme1: #333;
   --theme2: #666;
+  --cardBg: #f0f0f0;
+  --cardBorder: #ccc;
+  --cardShadow: rgba(0, 0, 0, 0.8);
+  --cardHover: #fff;
 }

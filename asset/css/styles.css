@@ -1,22 +1,36 @@
-/* Importation des fichiers CSS */
+/* ====================
+   IMPORTATION DES FICHIERS CSS
+==================== */
 @import "variables.css";
 @import "reboot.css";
 @import "utilities.css";
 @import "custom.css";
 
-/* Grille de recettes responsive */
-.recipes {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 2rem;
-  padding: 2rem;
+/* ====================
+   LAYOUT GÉNÉRAL
+==================== */
+main {
+  background-color: var(--theme2);
 }
 
-/* Style des cartes de recettes */
-.recipe {
-  background: white;
+.recipes {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 2rem;
+  padding: 2rem;
+  background-color: var(--theme2);
   border-radius: 8px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  margin-top: 2rem;
+}
+
+/* ====================
+   COMPOSANT CARTE RECETTE
+==================== */
+/* Style de base de la carte */
+.recipe {
+  background: var(--cardBg);
+  border-radius: 8px;
+  box-shadow: rgb(0 0 0 / 0.8) 0 4px 6px -1px;
   overflow: hidden;
   transition: transform 0.3s ease;
   display: flex;
@@ -24,51 +38,60 @@
   height: 100%;
 }
 
-/* Animation au survol des cartes */
+/* Variante article.recipe */
+.article.recipe {
+  background: var(--cardBg);
+  border-radius: 8px;
+  box-shadow: var(--cardShadow);
+  overflow: hidden;
+  transition: transform 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  border: var(--cardBorder);
+}
+
+/* Animation au survol */
 .recipe:hover {
   transform: translateY(-5px);
 }
 
-/* Style des images de recettes */
+/* Image de la recette */
 .recipe-image {
   width: 100%;
-  height: 250px;
+  height: 200px;
   object-fit: cover;
-  display: block;
+  padding: 0.3rem;
+  border-radius: 8px;
+  box-shadow: rgb(0 0 0 / 0.8) 0 4px 6px -1px;
 }
 
-/* Style des titres de recettes */
+/* Titre de la recette */
 .recipe-title {
-  padding: 1rem;
-  margin: 0;
-  font-size: 1.4rem;
+  font-size: 1.5rem;
+  margin: 1rem;
+  color: var(--theme);
   text-align: center;
-  color: #333;
+  background-color: var(--cardBg);
 }
 
-/* Style des détails de recettes */
+/* Détails de la recette */
 .recipe-details {
-  padding: 0.5rem 1rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
+  padding: 1rem;
+  flex-grow: 1;
+  max-height: 136px;
+  box-shadow: rgb(0 0 0 / 0.8) 0 4px 6px -1px;
 }
 
 .recipe-details p {
-  margin: 0;
-  padding: 0.25rem 0;
-  color: #666;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
+  margin: 0.5rem 0;
+  background-color: var(--cardBg);
 }
 
-/* Style des ingrédients */
+/* Liste des ingrédients */
 .recipe-ingredients {
-  padding: 0 1rem;
-  margin: 0.5rem 0;
+  margin: 1rem;
   font-weight: bold;
-  color: #333;
 }
 
 .recipe ul {
@@ -77,102 +100,76 @@
   margin: 0;
 }
 
-.recipe ul li {
-  padding: 0.25rem 0;
-  color: #666;
+.recipe li {
+  margin: 0.25rem 0;
 }
 
-/* Style de la barre de navigation */
+/* ====================
+   BARRE DE NAVIGATION
+==================== */
 .navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #333;
-  color: #fff;
-  padding: 1rem;
+  padding: 1rem 2rem;
+  background-color: var(--theme1);
+  color: white;
+
+  box-shadow: rgba(0, 0, 0, 0.8) 0 4px 6px -1px;
 }
 
-/* Style des liens dans la navbar */
-.navbar a {
-  color: #fff;
+.navbar h1 {
+  margin: 0;
+}
+
+.links {
+  display: flex;
+  gap: 1rem;
+}
+
+.links a {
+  color: white;
   text-decoration: none;
-  margin-right: 1rem;
 }
 
-/* Style de la barre de titre et recherche */
+/* ====================
+   BARRE DE RECHERCHE
+==================== */
 .barre {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #333;
-  color: #fff;
-  padding: 1rem;
-  height: auto;
-  flex-wrap: wrap;
+  padding: 1rem 2rem;
+  background-color: var(--theme2);
+  box-shadow: rgb(0 0 0 / 0.8) 0 4px 6px -1px;
+  margin-bottom: 1rem 0;
+  color: white;
+}
+
+.search {
+  display: flex;
   gap: 1rem;
 }
 
-/* Style du titre dans la barre */
-.barre h1 {
-  margin: 0;
-  padding: 0;
-}
-
-/* Style du conteneur de recherche */
-.search {
-  display: flex;
-  align-items: center;
-  background-color: #fff;
-  border-radius: 8px;
+.search input,
+.search select {
   padding: 0.5rem;
-  gap: 0.5rem;
-  height: 40px;
-  flex: 1;
-  max-width: 500px;
-  min-width: 200px;
-}
-
-/* Style du sélecteur de filtre */
-.filter-select {
   border: none;
-  outline: none;
-  padding: 0.5rem;
-  border-right: 1px solid #ddd;
-  cursor: pointer;
-  background-color: transparent;
+  border-radius: 4px;
 }
 
-/* Style du sélecteur de filtre */
-.filter {
-  border: none;
-  outline: none;
-  padding: 0.5rem;
-  border-right: 1px solid #ddd;
-  cursor: pointer;
-  background-color: transparent;
-  width: 120px;
-}
-
-/* Style du champ de recherche */
-.search-input {
-  border: none;
-  outline: none;
-  padding: 0.5rem;
-  flex: 1;
-  min-width: 100px;
-}
-
-/* Style du bouton de recherche */
 .search-button {
-  background: none;
+  padding: 0.5rem 1rem;
   border: none;
+  border-radius: 4px;
+  background-color: var(--theme1);
+  color: white;
   cursor: pointer;
-  font-size: 1.2rem;
-  padding: 0.5rem;
-  transition: transform 0.2s;
 }
 
-/* Media queries pour la responsivité */
+/* ====================
+   MEDIA QUERIES
+==================== */
 @media (max-width: 768px) {
   /* Adaptations pour tablettes */
   .barre {

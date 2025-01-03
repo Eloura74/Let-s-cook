@@ -19,7 +19,7 @@ let limit = [];
 const fetchData = async () => {
   try {
     const response = await fetch(
-      `https://dummyjson.com/recipes?limit=24&sortBy=name&order=asc&search?q=${searchInput.value}`
+      `https://dummyjson.com/recipes?limit=32&sortBy=name&order=asc&search?q=${searchInput.value}`
     );
     const data = await response.json();
     recipesData = data.recipes;
@@ -137,4 +137,5 @@ console.log("Écouteurs d'événements ajoutés");
 
 // Lancement de l'application
 console.log("Démarrage de l'application...");
+
 displayData();

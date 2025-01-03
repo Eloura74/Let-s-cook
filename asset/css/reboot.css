@@ -2,8 +2,8 @@
 *::before,
 *::after {
   box-sizing: border-box;
-  border: 1px dashed white;
-  background-color: rgba(0, 0, 0, 0.1);
+  /* border: 1px dashed white; */
+  /* background-color: rgba(0, 0, 0, 0.1); */
 }
 
 body {
