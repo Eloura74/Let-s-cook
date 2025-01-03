@@ -28,17 +28,26 @@
           <h1>All recipes</h1>
 
           <div class="search">
-            <!-- <select class="filter">
-              <option value="name">Name</option>
-              <option value="prepTimeMinutes">Prep Time</option>
-              <option value="rating">Rating</option>
-              <option value="cuisine">Cuisine</option>
-            </select> -->
+            <select class="filter1" id="cuisineFilter">
+              <option value="">All Cuisines</option>
+              <option value="italian">Italian</option>
+              <option value="french">French</option>
+              <option value="chinese">Chinese</option>
+              <option value="indian">Indian</option>
+              <option value="mexican">Mexican</option>
+              <option value="japanese">Japanese</option>
+            </select>
+            <select class="filter2" id="starFilter">
+              <option value="">All Ratings</option>
+              <option value="5">5 Stars</option>
+              <option value="4">4+ Stars</option>
+              <option value="3">3+ Stars</option>
+            </select>
             <input
               type="search"
               id="search"
               class="search-input"
-              placeholder="Search"
+              placeholder="Search by name"
             />
             <button class="search-button">🔍</button>
           </div>
