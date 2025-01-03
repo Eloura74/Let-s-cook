@@ -9,16 +9,18 @@
   </head>
   <body>
     <!-- Header -->
-    <header>
-      <section class="title navbar">
-        <h1>Lets cook</h1>
-        <div class="links">
-          <a href="#">Home</a>
-          <a href="#">Add a recipes</a>
-        </div>
-        <!-- <link href="index.html" />Home <link href="#" />Add a recipes -->
-      </section>
-    </header>
+<header>
+  <nav class="navbar">
+    <div class="logo-container">
+      <img src="asset/img/logo.svg" alt="Logo Let's Cook" class="logo">
+      <h1>Let's Cook</h1>
+    </div>
+    <div class="links">
+      <a href="#">Home</a>
+      <a href="#" class="add-recipe">+ Add a recipe</a>
+    </div>
+  </nav>
+</header>
 
     <!-- Main Content -->
     <main>
@@ -64,7 +66,71 @@
             <button class="search-button">🔍</button>
           </div>
         </div>
-        <!-- search bar -->
+      </section>
+      <div class="container mx-auto recipes">
+        <!-- desktop cards 4 columns -->
+        <!-- mobile cards 1 columns -->
+        <!-- tablet cards 2 columns -->
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+      <p>&copy; Let's Cook</p>
+    </footer>
+    <script src="asset/js/index.js"></script>
+  </body>
+</html>
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Let's cook</title>
+    <!-- <link href="output.css" rel="stylesheet" /> -->
+    <link href="asset/css/styles.css" rel="stylesheet" />
+  </head>
+  <body>
+    <!-- Header -->
+    <header>
+      <nav class="navbar">
+        <div class="logo-container">
+          <img src="asset/img/logo.svg" alt="Logo Let's Cook" class="logo">
+          <h1>Let's Cook</h1>
+        </div>
+        <div class="links">
+          <a href="#">Home</a>
+          <a href="#" class="add-recipe">+ Add a recipe</a>
+        </div>
+      </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+      <!-- recette -->
+      <section>
+        <div id="barre" class="title barre">
+          <h1>All recipes</h1>
+
+          <div class="search">
+            <select class="filter1" id="cuisineFilter">
+              <option value="">All Cuisines</option>
+            </select>
+            <select class="filter2" id="starFilter">
+              <option value="">All Ratings</option>
+              <option value="5">5 Stars</option>
+              <option value="4">4+ Stars</option>
+              <option value="3">3+ Stars</option>
+            </select>
+            <input
+              type="search"
+              id="search"
+              class="search-input"
+              placeholder="Search by name"
+            />
+            <button class="search-button">🔍</button>
+          </div>
+        </div>
       </section>
       <div class="container mx-auto recipes">
         <!-- desktop cards 4 columns -->
