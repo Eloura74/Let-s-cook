@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Let's cook</title>
+    <!-- <link href="output.css" rel="stylesheet" /> -->
+    <link href="asset/css/styles.css" rel="stylesheet" />
+  </head>
+  <body>
+    <!-- Header -->
+    <header>
+      <nav class="navbar">
+        <div class="nav-brand">
+          <img src="asset/img/logo.svg" alt="Let's Cook Logo" />
+          <span>Let's Cook</span>
+        </div>
+        <div class="nav-links">
+          <a href="#" class="nav-link">Home</a>
+          <a href="#" class="nav-link add-recipe">+ Add a recipe</a>
+        </div>
+      </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+      <!-- recette -->
+      <section>
+        <div id="barre" class="title barre">
+          <h1>All recipes</h1>
+
+          <div class="search">
+            <select class="filter1" id="cuisineFilter">
+              <option value="">All Cuisines</option>
+              <option value="italian">Italian</option>
+              <option value="french">French</option>
+              <option value="chinese">Chinese</option>
+              <option value="asian">Asian</option>
+              <option value="american">American</option>
+              <option value="mexican">Mexican</option>
+              <option value="mediterranean">Mediterranean</option>
+              <option value="pakistani">Pakistani</option>
+              <option value="japanese">Japanese</option>
+              <option value="moroccan">Moroccan</option>
+              <option value="korean">Korean</option>
+              <option value="greek">Greek</option>
+              <option value="thai">Thai</option>
+              <option value="turkish">Turkish</option>
+              <option value="smoothie">Smoothie</option>
+              <option value="russian">Russian</option>
+              <option value="lebanese">Lebanese</option>
+              <option value="brazilian">Brazilian</option>
+            </select>
+            <select class="filter2" id="starFilter">
+              <option value="">All Ratings</option>
+              <option value="5">5 Stars</option>
+              <option value="4">4+ Stars</option>
+              <option value="3">3+ Stars</option>
+            </select>
+            <input
+              type="search"
+              id="search"
+              class="search-input"
+              placeholder="Search by name"
+            />
+            <button class="search-button">🔍</button>
+          </div>
+        </div>
+        <!-- search bar -->
+      </section>
+      <div class="container mx-auto recipes">
+        <!-- desktop cards 4 columns -->
+        <!-- mobile cards 1 columns -->
+        <!-- tablet cards 2 columns -->
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+      <p>&copy; Let's Cook</p>
+    </footer>
+    <script src="asset/js/index.js"></script>
+  </body>
+</html>
