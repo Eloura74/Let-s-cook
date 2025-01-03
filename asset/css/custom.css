@@ -1,7 +1,0 @@
-.recipes {
-  & .recipe-card {
-    & img {
-      object-fit: cover;
-    }
-  }
-}
