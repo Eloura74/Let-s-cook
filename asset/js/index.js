@@ -2,20 +2,20 @@
 console.log("Fichier JavaScript chargé avec succès !");
 
 // Sélection des éléments du DOM
-
 const recipes = document.querySelector(".recipes");
 const searchInput = document.querySelector(".search-input");
 const filter1 = document.querySelector(".filter1");
 const filter2 = document.querySelector(".filter2");
+const ingredientFilterInput = document.querySelector(".filter3");
+
 console.log("Éléments du DOM sélectionnés");
 
 // Variable globale pour stocker les recettes
-
 let recipesData = [];
-let filter = [];
-let limit = [];
-
+// _____________________________________________________________________
 // Fonction pour récupérer les données de l'API
+// _____________________________________________________________________
+
 const fetchData = async () => {
   try {
     const response = await fetch(
@@ -31,90 +31,112 @@ const fetchData = async () => {
     );
   }
 };
+// _____________________________________________________________________
+// Fonction de recherche avec les filtres
+// _____________________________________________________________________
 
-// Fonction de recherche simple
 const allFilter = (e) => {
   console.log("Tous les filtres sont activés");
 
-  // Récupère la valeur de recherche, la convertit en minuscules et enlève les espaces inutiles
   const searchTerm = searchInput.value.toLowerCase().trim();
-  console.log(e);
-  console.log(`Recherche en cours pour : "${searchTerm}"`);
-
-  // Récupère la valeur du filtre cuisine (premier select) et la normalise
   const cuisineValue = filter1.value.toLowerCase().trim();
-  console.log(`Filtre 1 en cours pour : "${cuisineValue}"`);
-
-  // Récupère la valeur du filtre étoiles (deuxième select) et la convertit en nombre
-  // Si la conversion échoue (pas de valeur), utilise 0 comme valeur par défaut
   const starValue = parseInt(filter2.value) || 0;
-  console.log(`Filtre 2 en cours pour : "${starValue}"`);
+  const ingredientTerm = ingredientFilterInput.value.toLowerCase().trim();
+
   console.log(
-    `Application des filtres - Recherche: ${searchTerm}, Cuisine: ${cuisineValue}, Étoiles: ${starValue}`
+    `Recherche: ${searchTerm}, Cuisine: ${cuisineValue}, Étoiles: ${starValue}, Ingrédient: ${ingredientTerm}`
   );
-
-  // Filtrage des recettes : on applique tous les critères de filtrage sur chaque recette
+  // filtrer les recettes
   const filtreRecipes = recipesData.filter((recipe) => {
-    // Vérifie si le nom de la recette contient le terme recherché
+    // verif si nom est good
     const nameGood = recipe.name.toLowerCase().includes(searchTerm);
-    console.log(`Nom : ${nameGood}`);
-
-    // Vérifie si la cuisine correspond
-    // Si cuisineValue est vide (!cuisineValue est vrai), accepte toutes les cuisines
-    // Sinon, vérifie si la cuisine de la recette correspond exactement à celle sélectionnée
+    // verif si cuisine est good ou si rien selectionner
     const cuisineGood =
       !cuisineValue || recipe.cuisine.toLowerCase() === cuisineValue;
-    console.log(`Cuisine : ${cuisineGood}`);
-
-    // Vérifie si la note est suffisante
-    // Si starValue est 0 (!starValue est vrai), accepte toutes les notes
-    // Sinon, vérifie si la note de la recette est supérieure ou égale à celle demandée
+    // verif entreer star ou non
     const starGood = !starValue || recipe.rating >= starValue;
-    console.log(`Étoiles : ${starGood}`);
+    // some verifie au moin un element est good
+    const ingredientGood =
+      !ingredientTerm ||
+      recipe.ingredients.some((ingredient) =>
+        ingredient.toLowerCase().includes(ingredientTerm)
+      );
 
-    // Retourne true seulement si TOUS les critères sont satisfaits (ET logique)
-    return nameGood && cuisineGood && starGood;
+    console.log(
+      `Nom: ${nameGood}, Cuisine: ${cuisineGood}, Étoiles: ${starGood}, Ingrédients: ${ingredientGood}`
+    );
+    // return true
+    return nameGood && cuisineGood && starGood && ingredientGood;
   });
 
   console.log(`${filtreRecipes.length} recettes trouvées`);
-
+  // affiche recette filtrees
   displayRecipes(filtreRecipes);
 };
-
-// ______________________________________________________________________
-
-// Fonction d'affichage des recettes
+// _____________________________________________________________________
+// Fonction AFFICHAGE
+// _____________________________________________________________________
 
 const displayRecipes = (recipesList) => {
   console.log(`Affichage de ${recipesList.length} recettes`);
 
-  // Nettoyage du conteneur
   recipes.innerHTML = "";
-
-  // Création des cartes de recettes
   recipesList.forEach((recipe) => {
     const article = document.createElement("article");
     article.classList.add("recipe");
+
+    // Limite du nombre d'ingrédients visibles par défaut
+    const limitIngredientVu = 3;
+
+    // Création de la liste des ingrédients avec une limite
+    const ingredientLimit = recipe.ingredients.slice(0, limitIngredientVu);
+    const ingredientRestant = recipe.ingredients.slice(limitIngredientVu);
+
+    // Création dynamique de l'article
     article.innerHTML = `
-        <h2 class="recipe-title">${recipe.name}</h2>
-        <img class="recipe-image" src=${recipe.image} alt=${recipe.name} />
-        <div class="recipe-details">
-          <p>⏱️ Temps de préparation: ${recipe.prepTimeMinutes} mins</p>
-          <p>⭐ Note: ${recipe.rating}</p>
-          <p>🍽️ Cuisine: ${recipe.cuisine}</p>
-        </div>
-        <p class="recipe-ingredients">Ingrédients:</p>
-        <ul>
-          ${recipe.ingredients
-            .map((ingredient) => `<li>${ingredient}</li>`)
-            .join("")}
-        </ul>`;
+      <h2 class="recipe-title">${recipe.name}</h2>
+      <img class="recipe-image" src=${recipe.image} alt="${recipe.name}" />
+      <div class="recipe-details">
+        <p>⏱️ Temps de préparation: ${recipe.prepTimeMinutes} mins</p>
+        <p>⭐ Note: ${recipe.rating}</p>
+        <p>🍽️ Cuisine: ${recipe.cuisine}</p>
+      </div>
+      <p class="recipe-ingredients">
+        Ingrédients:
+        <button class="voirPlusBtn">En savoir plus</button>
+      </p>
+      <select multiple size="3" class="ingredientList">
+        ${ingredientLimit
+          .map((ingredient) => `<option>${ingredient}</option>`)
+          .join("")}
+      </select>
+    `;
+
+    // Ajout de l'article à la liste des recettes
     recipes.appendChild(article);
+
+    // Gestion du bouton "En savoir plus"
+    const voirPlusButton = article.querySelector(".voirPlusBtn");
+    const ingredientList = article.querySelector(".ingredientList");
+
+    // Événement au clic sur "En savoir plus"
+    voirPlusButton.addEventListener("click", () => {
+      // Ajoute les ingrédients restants à la liste déroulante
+      ingredientRestant.forEach((ingredient) => {
+        const option = document.createElement("option");
+        option.textContent = ingredient;
+        ingredientList.appendChild(option);
+      });
+
+      // Masque le bouton après avoir ajouté les ingrédients
+      voirPlusButton.style.display = "none";
+    });
   });
+
   console.log("Affichage terminé !");
 };
 
-// Fonction d'initialisation
+// initialisation avec ascyns
 const displayData = async () => {
   recipes.innerHTML = "Chargement en cours...";
   try {
@@ -127,15 +149,17 @@ const displayData = async () => {
     );
   }
 };
-
+// _____________________________________________________________________
 // Écouteur d'événement pour la recherche et les filtres
+// _____________________________________________________________________
+
 searchInput.addEventListener("input", allFilter);
 filter1.addEventListener("change", allFilter);
 filter2.addEventListener("change", allFilter);
+ingredientFilterInput.addEventListener("input", allFilter);
 
 console.log("Écouteurs d'événements ajoutés");
-
-// Lancement de l'application
 console.log("Démarrage de l'application...");
-
+// _____________________________________________________________________
+// _____________________________________________________________________
 displayData();

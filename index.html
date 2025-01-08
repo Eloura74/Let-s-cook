@@ -10,14 +10,16 @@
   <body>
     <!-- Header -->
     <header>
-      <section class="title navbar">
-        <h1>Lets cook</h1>
-        <div class="links">
-          <a href="#">Home</a>
-          <a href="#">Add a recipes</a>
+      <nav class="navbar">
+        <div class="nav-brand">
+          <img src="asset/img/logo.svg" alt="Let's Cook Logo" width="100" />
+          <h2 class="title">Let's Cook</h2>
         </div>
-        <!-- <link href="index.html" />Home <link href="#" />Add a recipes -->
-      </section>
+        <div class="nav-links">
+          <a href="#" class="nav-link">Home</a>
+          <a href="#" class="nav-link">+ Add a recipe</a>
+        </div>
+      </nav>
     </header>
 
     <!-- Main Content -->
@@ -61,7 +63,13 @@
               class="search-input"
               placeholder="Search by name"
             />
-            <button class="search-button">🔍</button>
+            <!-- <button class="search-button">🔍</button> -->
+            <input
+              type="text"
+              id="filter3"
+              class="filter3"
+              placeholder="Rechercher par ingrédient"
+            />
           </div>
         </div>
         <!-- search bar -->
