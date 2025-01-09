@@ -1,3 +1,4 @@
+// Import des modules
 import FiltreRecettes from "./filtres.js";
 import Api from "./api.js";
 
@@ -57,7 +58,7 @@ const displayRecipes = (recipesList) => {
       </div>
     `;
     recipes.appendChild(article);
-
+    console.log("cuisineFilter");
     // bouton "En savoir plus"
     const voirPlusButton = article.querySelector(".voirPlusBtn");
     voirPlusButton.addEventListener("click", () => {
@@ -70,7 +71,7 @@ const displayRecipes = (recipesList) => {
 // Fonction pour ouvrir les détails d'une recette
 // _____________________________________________________________________
 const openDetail = (recipeId) => {
-  const url = `https://dummyjson.com/recipes/${recipeId}`;
+  const url = `http://127.0.0.1:5500/index.html?id=${recipeId}`;
   window.open(url, "_blank");
 };
 
@@ -117,7 +118,7 @@ filter1.addEventListener("change", allFilter);
 filter2.addEventListener("change", allFilter);
 ingredientFilterInput.addEventListener("input", allFilter);
 
-console.log("Écouteurs d'événements ajoutés");
+// console.log("Écouteurs d'événements ajoutés");
 console.log("Démarrage de l'application...");
 
 // Lancer l'application
