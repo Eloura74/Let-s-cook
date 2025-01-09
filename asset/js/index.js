@@ -1,3 +1,4 @@
+// Import des modules
 import FiltreRecettes from "./filtres.js";
 import Api from "./api.js";
 
@@ -21,16 +22,20 @@ const api = new Api("https://dummyjson.com/recipes?limit=32");
 // _____________________________________________________________________
 // Fonction d'affichage des recettes
 // _____________________________________________________________________
+
 const displayRecipes = (recipesList) => {
   recipes.innerHTML = "";
 
   recipesList.forEach((recipe) => {
     const article = document.createElement("article");
     article.classList.add("recipe");
-    // Limiter les ingrédients visibles à 6
-    const maxVisibleIngredients = 6;
-    const visibleIngredients = recipe.ingredients.slice(0, maxVisibleIngredients);
 
+    // Limiter a 6 ingrédients
+    const maxVisibleIngredients = 6;
+    const visibleIngredients = recipe.ingredients.slice(
+      0,
+      maxVisibleIngredients
+    );
 
     article.innerHTML = `
       <h2 class="recipe-title">${recipe.name}</h2>
@@ -42,7 +47,7 @@ const displayRecipes = (recipesList) => {
       </div>
       <button class="voirPlusBtn">En savoir plus</button>
       <div>
-        <p>Ingrédients :</p>
+        <p class="titleIngredient">Ingrédients :</p>
         <div>
           <ul class="ingredientList">
             ${visibleIngredients
@@ -52,9 +57,8 @@ const displayRecipes = (recipesList) => {
         </div>
       </div>
     `;
-
     recipes.appendChild(article);
-
+    console.log("cuisineFilter");
     // bouton "En savoir plus"
     const voirPlusButton = article.querySelector(".voirPlusBtn");
     voirPlusButton.addEventListener("click", () => {
@@ -67,7 +71,7 @@ const displayRecipes = (recipesList) => {
 // Fonction pour ouvrir les détails d'une recette
 // _____________________________________________________________________
 const openDetail = (recipeId) => {
-  const url = `https://dummyjson.com/recipes/${recipeId}`;
+  const url = `http://127.0.0.1:5500/index.html?id=${recipeId}`;
   window.open(url, "_blank");
 };
 
@@ -114,7 +118,7 @@ filter1.addEventListener("change", allFilter);
 filter2.addEventListener("change", allFilter);
 ingredientFilterInput.addEventListener("input", allFilter);
 
-console.log("Écouteurs d'événements ajoutés");
+// console.log("Écouteurs d'événements ajoutés");
 console.log("Démarrage de l'application...");
 
 // Lancer l'application
