@@ -1,35 +1,33 @@
-export class FiltreNom {
-  constructor(searchInput, recipesData) {
-    this.searchInput = searchInput; // Input pour le nom de la recette
-
-    this.recipesData = recipesData; // Tableau des données des recettes
+export default class FiltreRecettes {
+  constructor(recipesData, displayRecipesCallback) {
+    this.recipesData = recipesData; // Données des recettes
+    this.displayRecipes = displayRecipesCallback; // Fonction d'affichage
   }
 
-  // Méthode pour récupérer les filtres
-  getFilters() {
-    return {
-      searchTerm: this.searchInput.value.toLowerCase().trim(),
-    };
-  }
-
-  // Méthode pour effectuer le filtrage
-  filterRecipesName() {
-    const { searchTerm } = this.getFilters();
-
+  appliquerFiltres(searchTerm, cuisineValue, starValue, ingredientTerm) {
+    // Filtrer les recettes
     return this.recipesData.filter((recipe) => {
-      // Vérifier si le nom correspond à la recherche
       const nameGood = recipe.name.toLowerCase().includes(searchTerm);
+      const cuisineGood =
+        !cuisineValue || recipe.cuisine.toLowerCase() === cuisineValue;
+      const starGood = !starValue || recipe.rating >= starValue;
+      const ingredientGood =
+        !ingredientTerm ||
+        recipe.ingredients.some((ingredient) =>
+          ingredient.toLowerCase().includes(ingredientTerm)
+        );
 
-      // Retourner true si tous les critères sont satisfaits
-      return nameGood;
+      return nameGood && cuisineGood && starGood && ingredientGood;
     });
   }
 
-  // Méthode pour appliquer le filtrage et mettre à jour l'interface
-  applyFilters(callback) {
-    const filteredRecipes = this.filterRecipesName();
-    if (typeof callback === "function") {
-      callback(filteredRecipes); // Appeler une fonction de rappel pour mettre à jour l'interface
-    }
+  filtrerEtAfficher(searchTerm, cuisineValue, starValue, ingredientTerm) {
+    const filteredRecipes = this.appliquerFiltres(
+      searchTerm,
+      cuisineValue,
+      starValue,
+      ingredientTerm
+    );
+    this.displayRecipes(filteredRecipes);
   }
 }
