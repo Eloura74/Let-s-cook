@@ -53,19 +53,46 @@ Ce projet a été conçu pour :
 │   └── js
 │       ├── index.js
 │       └── filtres.js
+│       └── api.js
 ├── index.html
 └── README.md
 ```
 
-### Points clés de l'architecture :
+### Partionnage des fichiers :
 
-1. **Séparation des préoccupations :**
+- Le fichier `filtres.js` gère les filtres grâce à la classe `FiltreRecettes`.
 
-   - Le fichier `filtres.js` gère la logique des filtres grâce à la classe `FiltreRecettes`.
-   - Le fichier `index.js` se concentre sur l'initialisation, l'affichage des données, et les événements utilisateur.
+  - Avec les paramètres suivant:
+    - searchTerm : Mot-clé recherché dans le nom des recettes.
+    - cuisineValue : Type de cuisine sélectionné (ex. : "italienne", "japonaise").
+    - starValue : Note minimale visible (ex. : 4 étoiles).
+    - ingredientTerm : Mot-clé recherché dans les ingrédients.
+  - Ensuite filtre les recettes en vérifiant :
+    - Si le nom contient le mot-clé de searchTerm.
+    - Si le type de cuisine correspond à la sélection (cuisineValue).
+    - Si la note est supérieure ou égale à la valeur minimale (starValue).
+    - Si un ou plusieurs ingrédients contiennent le mot-clé (ingredientTerm).
+  - Et retourne un tabbleau contenatn les recettes filtrées.
+  - Et `filtrerEtAfficher` qui donne les recettes filtrées à la fonction `displayRecipes` pour les afficher dynamiquement.
 
-2. **Approche POO :**
-   - La classe `FiltreRecettes` encapsule toute la logique métier, comme l'application des critères de filtre et l'appel de la fonction d'affichage des recettes.
+- Le fichier `api.js` contient la classe `Api` pour obtenir les données de l'API.
+  - Cette classe utilise une fonction asynchrone `fetchData` pour obtenir les données de l'API au format JSON.
+  - Utilise fetch pour effectuer une requête asynchrone.
+  - Vérifie si la réponse est valide avec la gestion d'erreurs .
+  - Si la réponse est valide, elle est convertie en JSON.
+  - Si erreur (réponse non valide ou problème réseau), une exception est levée avec un message d'erreur.
+  - Elle effectue une requête http et renvoie les données obtenues.
+- Le fichier `index.js` avec l'affichage des données, et les événements utilisateur.
+  - Gestion des différent élément interactif de la page.
+  - Stockage des données obtenues par l'API dans e `recipesData`.
+  - Affichage dynamique des recettes et ajout d'evenements sur les bouton avec `DisplayRecipes` .
+  - `OpenDetail` pour ouvrir les details des recettes.
+  - `displayData` pour obtenir les données de l'API et les afficher dynamiquement.
+  - `displayRecipes` pour afficher les recettes dynamiquement.
+  - 'allFilters' pour afficher les filtres dynamiquement.
+  - Ajout des écouteurs d'événements.
+  - 'displaData' pour lancer l'application.
+  -
 
 ---
 
@@ -74,13 +101,15 @@ Ce projet a été conçu pour :
 - **API :** [DummyJSON](https://dummyjson.com/) pour les données des recettes.
 - **Vanilla JavaScript :** Le projet utilise uniquement les fonctionnalités natives de JavaScript.
 - **CSS :** Styles personnalisés pour une interface utilisateur simple et agréable.
-- **Déploiement :** Prévu sur **Vercel** pour un accès rapide et pratique.
+- **Déploiement :** **Vercel** pour un accès rapide et pratique.
 
 ---
 
 ## Fonctionnement
 
 ### Installation
+
+#### Cloner le repository depuis GitHub
 
 1. Clonez ce dépôt :
    ```bash
@@ -92,23 +121,18 @@ Ce projet a été conçu pour :
    ```
 3. Ouvrez le fichier `index.html` dans votre navigateur ou servez le projet avec un outil local (comme [Live Server](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer)).
 
-### Explications techniques
+#### Depuis l'adresse Https
 
-- **Classe `FiltreRecettes` :**  
-  La classe centralise la logique de filtrage via deux méthodes principales :
-
-  - `appliquerFiltres` : Applique les critères de recherche et de filtrage pour renvoyer une liste de recettes filtrées.
-  - `filtrerEtAfficher` : Combine le filtrage et l'affichage dynamique des résultats.
-
-- **Asynchronous Fetching :**
-  - Les recettes sont récupérées depuis l'API avec une fonction asynchrone utilisant `fetch` et `async/await`.
-  - La gestion des erreurs assure une expérience fluide, même en cas de problème avec l'API.
+1. Accédez à l'adresse suivante :
+   ```bash
+   https://let-s-cook-gold.vercel.app
+   ```
 
 ---
 
 ## Auteur
 
-- **Nom :** Votre Nom
+- **Nom :** Faber Quentin
 - **Formation :** Développement Web et Web Mobile.
 - **Objectif :** Apprentissage des concepts de la POO et des bonnes pratiques en développement web.
 
@@ -122,5 +146,3 @@ Ce projet a été conçu pour :
 4. Développer une fonctionnalité de pagination pour afficher plus de résultats.
 
 ---
-
-Ce README est maintenant prêt à être intégré à votre projet. Si vous souhaitez ajouter d'autres informations ou sections, n'hésitez pas ! 😊
