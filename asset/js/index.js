@@ -27,6 +27,10 @@ const displayRecipes = (recipesList) => {
   recipesList.forEach((recipe) => {
     const article = document.createElement("article");
     article.classList.add("recipe");
+    // Limiter les ingrédients visibles à 6
+    const maxVisibleIngredients = 6;
+    const visibleIngredients = recipe.ingredients.slice(0, maxVisibleIngredients);
+
 
     article.innerHTML = `
       <h2 class="recipe-title">${recipe.name}</h2>
@@ -41,7 +45,7 @@ const displayRecipes = (recipesList) => {
         <p>Ingrédients :</p>
         <div>
           <ul class="ingredientList">
-            ${recipe.ingredients
+            ${visibleIngredients
               .map((ingredient) => `<li>${ingredient}</li>`)
               .join("")}
           </ul>
