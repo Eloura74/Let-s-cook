@@ -1,100 +1,148 @@
-# Let's Cook - Création d'une application de gestion de Recettes de Cuisine
+# Let's Cook 🍳
 
-![Image](https://i.imgur.com/bMWnAiT.png)
+![HTML Badge](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)  
+![CSS Badge](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)  
+![JavaScript Badge](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)  
+![Vercel Badge](https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white)  
+![DummyJSON Badge](https://img.shields.io/badge/API-DummyJSON-blue?style=for-the-badge)
 
-Ce projet consiste à développer une petite application web pour une entreprise culinaire "Lets Cook", présentant des recettes de cuisine sous forme de grille de posts.
+## Description
 
-## Objectifs
+**Let's Cook** est une application web développée entièrement en **Vanilla JavaScript**. Elle permet aux utilisateurs de rechercher et de filtrer des recettes de cuisine en s'appuyant sur une **API REST** externe, [DummyJSON](https://dummyjson.com/).
 
-**1. Réaliser des interfaces utilisateur statiques web ou web mobile:**
+### Objectifs pédagogiques
 
-- Intégrer la page principale de l'application.
-  - Intégrer une barre de navigation avec des liens fictifs
-  - Intégrer le pied de page
-- La page devra au minimum s'adapter aux tailles d'écrans:
-  - Desktop 1920x1080
-  - Tablets 768x1024
-  - Smartphones 360x800.
-- La page principale affichera une grille de 'posts' de recettes de cuisine:
-  -  4 'posts' par ligne.
-- Chaque post contient au minimum : une image, un titre et une description (ou ingrédients selon le cas).
-- Styliser la page principale de l'application avec CSS3
-  - Organiser le CSS avec des classes utilitaires
-- Accessibilité :
-  - Utilisation de balises sémantiques appropriées.
-  - Contrastes de couleurs suffisants, tailles de texte lisibles et navigation au clavier.
-- Tester le code
-  - A l'aide de l'inspecteur de contenu du navigateur > lighthouse
-  - Avec l'outil de validation de code W3 Validator <https://validator.w3.org/>>
+Ce projet a été conçu pour :
 
-**2. Développer la partie dynamique des interfaces utilisateur web ou web mobile:**
+- Mettre en pratique la **Programmation Orientée Objet (POO)** avec des classes JavaScript.
+- Utiliser des **fonctions asynchrones** pour interagir avec une API REST.
+- Apprendre à structurer un projet web avec des **modules JavaScript**.
+- Renforcer les compétences en création d'interfaces dynamiques et interactives.
 
-- Utiliser une API en ligne pour charger les 'posts' de recettes de cuisine depuis un fichier JSON à l'aide de `fetch()`.
-  - API RESTful Dummy JSON : [https://dummyjson.com/](https://dummyjson.com/).
-- Organiser le code JavaScript avec des modules et des fonctions.
-- Organiser le code JavaScript sous forme de classes (Programmation Orientée Objet - POO).
-- Ajouter des fonctionnalités de recherche et de tri.
-- Intégrer des icônes à l'aide de librairies.
+---
 
-**3. DevOps:**
+## Fonctionnalités principales
 
-- Utiliser git pour la gestion de versions pour le partage de ressources et la communication.
-- Déployer l'application sur une plateforme de 'hosting' comme
-  - Always Data <https://www.alwaysdata.com/>
-  - Vercel <https://vercel.com/>
+1. **Recherche dynamique :**  
+   Les utilisateurs peuvent rechercher une recette par son nom en saisissant un mot-clé. Les résultats s'affichent en temps réel avec une fonction asynchrone.
 
-**4. Documentation et Maintenance**
+2. **Filtres :**
 
-- README :
-  - Ajouter un fichier `README.md` détaillant le titre du projet, une description de la structure du projet, et des notes explicatives sur les choix de conception et de développement, l'autheur et la date de création.
+   - Filtrer les recettes par pays d'origine.
+   - Afficher uniquement les recettes ayant une note minimale de 3, 4, 5 étoiles.
+   - Trouver des recettes contenant des ingrédients spécifiques.
 
-- Commentaires et Code Propre :
-  - Présence de commentaires pertinents dans le code.
-  - Lisibilité et structure du code (nommage des variables et des fonctions, découpage en fonctions/composants réutilisables).
+3. **Affichage détaillé des recettes :**  
+   Chaque recette affiche des informations clés : temps de préparation, pays d'origine de la recette, ingrédients et note. Un bouton "En savoir plus" ouvre les détails complets d'une recette.
 
-**Autres objectifs:**
+4. **Architecture :**
+   - Le code JavaScript est structuré en deux fichiers principaux :
+     - `index.js` : Initialise l'application et gère les interactions utilisateur.
+     - `filtres.js` : Contient la classe `FiltreRecettes`, qui encapsule toute la logique des filtres.
+     - `api.js` : Contient la classe `Api` pour obtenir les données de l'API avec une fonctione asynchrone.
 
-- Tester les requettes HTTP et les fonctionnalités de l'API dans le navigateur.
-- Tester les requettes HTTP et les fonctionnalités de l'API avec Postman ou autres outils similaires.
-  - Thunder Client <https://marketplace.visualstudio.com/items?itemName=rangav.vscode-thunder-client>
+---
 
-## Compétences visées
+## Architecture du projet
 
-### Réaliser des interfaces utilisateur statiques web ou web mobile
+```
+.
+├── assets
+│   ├── css
+│   │   ├── style.css
+│   └── js
+│       ├── index.js
+│       └── filtres.js
+│       └── api.js
+├── index.html
+└── README.md
+```
 
-- **Compétences** : Développement de pages web en utilisant HTML5 et CSS3, compréhension de la mise en page responsive.
-- **Exemple** : Codage en HTML5 et CSS3 pour structurer des pages web et appliquer des styles.
+### Partionnage des fichiers :
 
-### Développer la partie dynamique des interfaces utilisateur web ou web mobile
+- Le fichier `filtres.js` gère les filtres grâce à la classe `FiltreRecettes`.
 
-- **Compétences** : Programmation en JavaScript, utilisation de bibliothèques et frameworks pour enrichir l'interaction utilisateur.
-- **Exemple** : Utilisation de JavaScript et de frameworks comme React ou Angular pour rendre les interfaces interactives.
+  - Avec les paramètres suivant:
+    - searchTerm : Mot-clé recherché dans le nom des recettes.
+    - cuisineValue : Type de cuisine sélectionné (ex. : "italienne", "japonaise").
+    - starValue : Note minimale visible (ex. : 4 étoiles).
+    - ingredientTerm : Mot-clé recherché dans les ingrédients.
+  - Ensuite filtre les recettes en vérifiant :
+    - Si le nom contient le mot-clé de searchTerm.
+    - Si le type de cuisine correspond à la sélection (cuisineValue).
+    - Si la note est supérieure ou égale à la valeur minimale (starValue).
+    - Si un ou plusieurs ingrédients contiennent le mot-clé (ingredientTerm).
+  - Et retourne un tabbleau contenatn les recettes filtrées.
+  - Et `filtrerEtAfficher` qui donne les recettes filtrées à la fonction `displayRecipes` pour les afficher dynamiquement.
 
-## Modalités de travail
+- Le fichier `api.js` contient la classe `Api` pour obtenir les données de l'API.
+  - Cette classe utilise une fonction asynchrone `fetchData` pour obtenir les données de l'API au format JSON.
+  - Utilise fetch pour effectuer une requête asynchrone.
+  - Vérifie si la réponse est valide avec la gestion d'erreurs .
+  - Si la réponse est valide, elle est convertie en JSON.
+  - Si erreur (réponse non valide ou problème réseau), une exception est levée avec un message d'erreur.
+  - Elle effectue une requête http et renvoie les données obtenues.
+- Le fichier `index.js` avec l'affichage des données, et les événements utilisateur.
+  - Gestion des différent élément interactif de la page.
+  - Stockage des données obtenues par l'API dans e `recipesData`.
+  - Affichage dynamique des recettes et ajout d'evenements sur les bouton avec `DisplayRecipes` .
+  - `OpenDetail` pour ouvrir les details des recettes.
+  - `displayData` pour obtenir les données de l'API et les afficher dynamiquement.
+  - `displayRecipes` pour afficher les recettes dynamiquement.
+  - 'allFilters' pour afficher les filtres dynamiquement.
+  - Ajout des écouteurs d'événements.
+  - 'displaData' pour lancer l'application.
+  -
 
-Des captures d'écran sont fournies pour vous aider. Mais vous êtes libre pour le design de votre application.
+---
 
-Attention de toutefois de bien respecter les contraintes techniques décrites ci-dessus.
+## Ressources utilisées 📚
 
-Vous travaillerez en autonomie. Vous devrez planifier et exécuter le projet en respectant les contraintes techniques.
+- **API :** [DummyJSON](https://dummyjson.com/) pour les données des recettes.
+- **Vanilla JavaScript :** Le projet utilise uniquement les fonctionnalités natives de JavaScript.
+- **CSS :** Styles personnalisés pour une interface utilisateur simple et agréable.
+- **Déploiement :** **Vercel** pour un accès rapide et pratique.
 
-Vous utiliserez Git pour la gestion de version et vous pourrez vous appuyer sur des outils de collaboration en ligne pour le partage de ressources et la communication.
+---
 
-Des sessions de feedback intermédiaires seront organisées pour évaluer les progrès et ajuster les objectifs.
+## Fonctionnement
 
-## Deadline
+### Installation
 
-10 Janvier 2025
+#### Cloner le repository depuis GitHub
 
-## Livrable
+1. Clonez ce dépôt :
+   ```bash
+   git clone https://github.com/votre-utilisateur/lets-cook.git
+   ```
+2. Accédez au répertoire du projet :
+   ```bash
+   cd lets-cook
+   ```
+3. Ouvrez le fichier `index.html` dans votre navigateur ou servez le projet avec un outil local (comme [Live Server](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer)).
 
-1. **Projet Zippé :** Soumettez un dossier zippé de votre projet sans node_modules, nommé Nom_Prénom_letscook.zip.
-Incluez tous les fichiers nécessaires (à l'exception de node_modules).
+#### Depuis l'adresse Https
 
-2. **GitHub Repo :** Partagez le lien de votre répertoire GitHub contenant le projet. Assurez-vous que le README inclut des instructions d'installation, d'utilisation, et le lien vers le site déployé.
+1. Accédez à l'adresse suivante :
+   ```bash
+   https://let-s-cook-gold.vercel.app
+   ```
 
-3. **Lien du site déployé :** Fournissez un lien vers votre application web déployée accessible publiquement.
+---
 
-Soumettez le fichier zippé et le lien GitHub via la plateforme de cours avant la date limite.
+## Auteur
 
-Assurez-vous que le lien du site déployé est fonctionnel et inscrivez-le dans le README du repo GitHub.
+- **Nom :** Faber Quentin
+- **Formation :** Développement Web et Web Mobile.
+- **Objectif :** Apprentissage des concepts de la POO et des bonnes pratiques en développement web.
+
+---
+
+## Améliorations possibles 🚀
+
+1. Ajouter un mode sombre pour une meilleure accessibilité.
+2. Permettre aux utilisateurs d'ajouter leurs propres recettes.
+3. Intégrer un système de favoris pour enregistrer les recettes préférées.
+4. Développer une fonctionnalité de pagination pour afficher plus de résultats.
+
+---
