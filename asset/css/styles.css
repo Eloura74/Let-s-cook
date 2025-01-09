@@ -38,6 +38,13 @@ main {
   height: 100%;
 }
 
+.titleIngredient {
+  margin: 1rem;
+  color: var(--theme);
+  text-align: center;
+  background-color: var(--cardBg);
+}
+
 /* Variante article.recipe */
 .article.recipe {
   background: var(--cardBg);
@@ -115,7 +122,8 @@ main {
 }
 
 .recipe li {
-  margin: 0.25rem 0;
+  margin: 0.25rem 20px;
+  list-style: circle;
 }
 
 .ingredientList {
@@ -138,8 +146,9 @@ main {
 .voirPlusBtn {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
+  font-weight: bold;
   background-color: var(--theme2);
   color: white;
   border: none;
@@ -150,6 +159,7 @@ main {
   margin: 1rem;
   &:hover {
     background-color: var(--theme1);
+    text-transform: uppercase;
   }
 }
 /* ====================
@@ -222,17 +232,14 @@ main {
   }
 }
 
+.filter2 {
+  border: rgb(110, 8, 8) 1px solid;
+}
+
 .search-input {
   border: black 1px solid;
   border-radius: 4px;
   padding: 0.5rem 1rem;
-}
-
-.filter1 {
-  border-radius: 8px;
-  &:hover {
-    background-color: var(--theme2);
-  }
 }
 
 /* ====================
@@ -244,27 +251,39 @@ main {
   align-items: center;
   padding: 1rem 2rem;
   background-color: var(--theme2);
-  box-shadow: rgb(0 0 0 / 0.8) 0 4px 6px -1px;
+  box-shadow: rgba(255, 255, 255, 0.8) 0 4px 6px -1px;
   margin-bottom: 1rem 0;
-  color: white;
+  color: rgb(227, 226, 226);
+  border-radius: 8px;
+  &:hover {
+    background-color: var(--theme2);
+    color: white;
+    box-shadow: rgba(0, 0, 0, 0.8) 0 4px 6px -1px;
+  }
+}
+.barre h1 {
+  text-align: center;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  box-shadow: rgba(255, 255, 255, 0.8) 0 4px 6px -1px;
 }
 
 .search {
   display: flex;
   gap: 1rem;
-  box-shadow: rgb(0 0 0 / 0.8) 0 4px 6px -1px;
+  box-shadow: rgba(236, 234, 234, 0.8) 0 4px 6px -1px;
 }
 
 .search input,
 .search select {
   padding: 0.5rem;
-  border: none;
+  border: white 1px solid;
   border-radius: 4px;
 }
 
 .search-button {
   padding: 0.5rem 1rem;
-  border: none;
+  border: white 1px solid;
   border-radius: 4px;
   background-color: var(--theme1);
   color: white;

@@ -92,7 +92,6 @@ Ce projet a été conçu pour :
   - 'allFilters' pour afficher les filtres dynamiquement.
   - Ajout des écouteurs d'événements.
   - 'displaData' pour lancer l'application.
-  -
 
 ---
 

@@ -21,12 +21,20 @@ const api = new Api("https://dummyjson.com/recipes?limit=32");
 // _____________________________________________________________________
 // Fonction d'affichage des recettes
 // _____________________________________________________________________
+
 const displayRecipes = (recipesList) => {
   recipes.innerHTML = "";
 
   recipesList.forEach((recipe) => {
     const article = document.createElement("article");
     article.classList.add("recipe");
+
+    // Limiter a 6 ingrédients
+    const maxVisibleIngredients = 6;
+    const visibleIngredients = recipe.ingredients.slice(
+      0,
+      maxVisibleIngredients
+    );
 
     article.innerHTML = `
       <h2 class="recipe-title">${recipe.name}</h2>
@@ -38,17 +46,16 @@ const displayRecipes = (recipesList) => {
       </div>
       <button class="voirPlusBtn">En savoir plus</button>
       <div>
-        <p>Ingrédients :</p>
+        <p class="titleIngredient">Ingrédients :</p>
         <div>
           <ul class="ingredientList">
-            ${recipe.ingredients
+            ${visibleIngredients
               .map((ingredient) => `<li>${ingredient}</li>`)
               .join("")}
           </ul>
         </div>
       </div>
     `;
-
     recipes.appendChild(article);
 
     // bouton "En savoir plus"
