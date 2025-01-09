@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="assets/css/style.css" />
+  </head>
+  <body>
+    <header>
+      <nav class="container mx-auto flex gap-1 ai-center px-1">
+        <div>
+          <img src="assets/images/logo.svg" alt="logo" width="30" />
+        </div>
+        <div class="flex fw-wrap ai-center gap-1">
+          <a href="index.html">Home</a>
+          <a href="#">Tendance</a>
+          <a href="#">Contact</a>
+        </div>
+      </nav>
+    </header>
+    <main>
+      <section
+        class="container mx-auto py-2 px-1 flex fw-wrap gap-1 jc-between ai-center"
+      >
+        <h1>All recipes</h1>
+
+        <!-- Search Bar  -->
+        <form class="flex fw-wrap gap-1">
+          <input
+            class="search-bar"
+            type="search"
+            placeholder="Search"
+            value=""
+            name="keyWord"
+            size="50"
+          />
+          <select name="filter1" id="filter1">
+            <option value="name-asc" selected>Sort By name asc</option>
+            <option value="name-desc">Sort By name desc</option>
+            <option value="id-asc">Sort By date asc</option>
+            <option value="id-desc">Sort By date desc</option>
+          </select>
+          <select name="filter2" id="filter2">
+            <option value="4">display 4</option>
+            <option value="8">display 8</option>
+            <option value="12" selected>display 12</option>
+            <option value="24">display 24</option>
+            <option value="30">display 36</option>
+          </select>
+        </form>
+      </section>
+      <div class="container mx-auto recipes py-2 px-1">
+        <!-- Mobile 1 col -->
+        <!-- Tablets 2 col -->
+        <!-- Desktop 4 col -->
+      </div>
+    </main>
+    <footer>
+      <div
+        class="container mx-auto flex fw-wrap gap-1 jc-between ai-center px-1"
+      >
+        <div>
+          <nav class="container mx-auto flex gap-1 ai-center">
+            <div>
+              <img src="assets/images/logo.svg" alt="logo" width="30" />
+            </div>
+            <div class="flex fw-wrap ai-center gap-1">
+              <a href="index.html">Home</a>
+              <a href="#">Tendance</a>
+              <a href="#">Contact</a>
+            </div>
+          </nav>
+        </div>
+        <div>
+          <p>&copy; 2025 All rights reserved</p>
+        </div>
+      </div>
+      <button class="buttonX" id="buttonX">say Hello</button>
+    </footer>
+    <script src="assets/js/script.js" type="module"></script>
+  </body>
+</html>
