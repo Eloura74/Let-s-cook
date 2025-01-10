@@ -71,8 +71,8 @@ const displayRecipes = (recipesList) => {
 // Fonction pour ouvrir les détails d'une recette
 // _____________________________________________________________________
 const openDetail = (recipeId) => {
-  const url = `http://127.0.0.1:5500/index.html?id=${recipeId}`;
-  window.open(url, "_blank");
+  const url = `recette.html?id=${recipeId}`;
+  window.location.href = url;
 };
 
 // _____________________________________________________________________
